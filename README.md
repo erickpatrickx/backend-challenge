@@ -1,3 +1,27 @@
+#Orientações iniciais#
+
+
+Conforme informado nos requisitos do projeto o mesmo deixa de ser monolitico, sendo assim optei
+por separar os projetos conforme boas praticas de desenvolvimento de microserviços. Segue projetos
+
+
+#Gateway#
+
+
+
+
+#Auth#
+
+
+
+#Store#
+
+
+
+
+
+
+
 # Invillia recruitment challenge
 
 [![Build Status](https://travis-ci.org/shelsonjava/invillia.svg?branch=master)](https://travis-ci.org/shelsonjava/invillia)
