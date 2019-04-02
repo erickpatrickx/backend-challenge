@@ -1,0 +1,30 @@
+version: '3'
+services:
+ gateway:
+    image: gateway-docker
+    ports:
+      - "8080:8080"
+ auth:
+    image: auth-docker
+    ports:
+      - "8888:8888"
+ order:
+    image: order-docker
+    ports:
+      - "8889:8889"
+    depends_on:
+      - docker-postgres
+ store:
+    image: store-docker
+    ports:
+      - "8890:8890"
+    depends_on:
+      - docker-postgres
+ 
+ docker-postgres:
+    image: postgres:10.4
+    environment:
+      - POSTGRES_DB=invillia
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+version: 0.0.1;
