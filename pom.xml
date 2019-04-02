@@ -9,13 +9,12 @@
 	<packaging>pom</packaging>
 
 	<name>invillia</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Invillia project for Spring Boot</description>
 
      <modules>
 		<module>app_back_store</module>
 		<module>app_back_order</module>
 		<module>app_back_gateway</module>
 		<module>app_back_auth</module>
-		
 	</modules>
 </project>
