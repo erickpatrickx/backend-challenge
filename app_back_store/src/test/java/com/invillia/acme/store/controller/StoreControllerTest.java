@@ -1,4 +1,4 @@
-package com.invillia.acme.order.controller;
+package com.invillia.acme.store.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -33,7 +33,8 @@ public class StoreControllerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	String token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjbGllbnRlIiwicm9sZXMiOiJST0xFX1VTRVIiLCJleHAiOjE1NTUwODk3NTN9.HLs4NFH19s3a85TompEtAtgIvY3K4gr4jka30y3kWWgCOIoEVPo-c8BeISnPbdbvtKukaf0kzeFHPh511mCU4Q";
+	//TODO Token gerado ponto de melhoria nos testes unitarios
+	String token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTU1NTE3MTExNH0.-0D3T-JWRFss8Y8G5eEUfwZk4xQbrm3mjIaQJBfu_q2NGbpZ56mZQAKCBmwL4oDKj7pxIEqpAaJYnvlyxRZtJg";
 
 	
 	

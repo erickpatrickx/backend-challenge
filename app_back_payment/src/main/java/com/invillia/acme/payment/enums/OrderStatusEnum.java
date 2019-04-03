@@ -1,4 +1,4 @@
-package com.invillia.acme.order.enums;
+package com.invillia.acme.payment.enums;
 
 public enum OrderStatusEnum {
 

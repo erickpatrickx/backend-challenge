@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.invillia.acme.store.domain.Store;
-import com.invillia.acme.store.dto.FilterStoreDTO;
 import com.invillia.acme.store.dto.StoreDTO;
 import com.invillia.acme.store.exception.BadRequestException;
 import com.invillia.acme.store.service.StoreService;
@@ -58,8 +58,7 @@ public class StoreController {
     @Secured("ROLE_ADMIN")
 	public ResponseEntity<List<StoreDTO>> getStore(@RequestParam(required = false) String nome,
 			@RequestParam(required = false) String endereco) {
-		FilterStoreDTO filter = FilterStoreDTO.builder().nome(nome).endereco(endereco).build();
-		return ResponseEntity.status(HttpStatus.OK).body(storeService.findStore(filter).stream()
+		return ResponseEntity.status(HttpStatus.OK).body(storeService.findStore(nome,endereco).stream()
 				.map(this::toDTO).collect(Collectors.toList()));	}
 
 	/**
@@ -83,16 +82,16 @@ public class StoreController {
 	 * @param StoreDTO
 	 * @return ResponseEntity
 	 */
-	@PutMapping("/update/")
+	@PutMapping("/update/{id}")
 	@ApiOperation(notes = "Atualiar os dados de uma Store", value = "Store", response = ResponseEntity.class)
     @Secured("ROLE_ADMIN")
-	public ResponseEntity<StoreDTO> update(@Validated @RequestBody StoreDTO dto)
+	public ResponseEntity<StoreDTO> update(@Validated @RequestBody StoreDTO dto,@PathVariable Long id)
 			throws URISyntaxException {
-		if (dto.getId() == null) {
-			throw new BadRequestException("Id inexistente");
+		if (id == null) {
+			throw new BadRequestException("Informe o id");
 		}
 		Store store = modelMapper.map(dto, Store.class);
-		store = storeService.update(store);
+		store = storeService.update(store,id);
 		return ResponseEntity.ok().body(modelMapper.map(store, StoreDTO.class));
 	}
 

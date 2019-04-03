@@ -1,5 +1,5 @@
 server:
-  port: 8890
+  port: 8891
   
 spring:
     datasource:
@@ -19,5 +19,5 @@ spring:
            lob:
             non_contextual_creation: true
            
-      
-      
+gateway:
+  url: http://localhost:8080/order     

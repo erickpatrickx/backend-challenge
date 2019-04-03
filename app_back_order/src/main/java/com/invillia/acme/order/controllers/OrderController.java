@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,9 +49,28 @@ public class OrderController {
 		this.orderService = orderService;
 	}
 
+	/**
+	 * @param endereco
+	 * @param status
+	 * @param confirmacao
+	 * @return OrderDTO
+	 */
+	@GetMapping("/find/{id}")
+	@ApiOperation(notes = "Recuperar uma Order por id", value = "Filter", response = ResponseEntity.class)
+	@Secured("ROLE_USER")
+	public ResponseEntity<OrderDTO> findById(@PathVariable(required = false) Long id) {
+		return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(orderService.findById(id), OrderDTO.class));
+	}
+
+	/**
+	 * @param endereco
+	 * @param status
+	 * @param confirmacao
+	 * @return OrderDTO
+	 */
 	@GetMapping("/find")
 	@ApiOperation(notes = "Recuperar uma Order por parametros", value = "Filter", response = ResponseEntity.class)
-    @Secured("ROLE_USER")
+	@Secured("ROLE_USER")
 	public ResponseEntity<List<OrderDTO>> findByParameters(@RequestParam(required = false) String endereco,
 			@RequestParam(required = false) OrderStatusEnum status,
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime confirmacao) {
@@ -65,11 +86,24 @@ public class OrderController {
 	 */
 	@PostMapping("/save")
 	@ApiOperation(notes = "Salvar os dados de uma Order", value = "Order", response = ResponseEntity.class)
-    @Secured("ROLE_USER")
+	@Secured("ROLE_USER")
 	public ResponseEntity<OrderDTO> create(@RequestBody @Valid OrderDTO dto) {
 		Order order = modelMapper.map(dto, Order.class);
 		order = orderService.save(order);
 		return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(order, OrderDTO.class));
+	}
+
+	/**
+	 * Metodo responsavel por atualizar o status de uma Order
+	 * 
+	 * @param OrderDTO
+	 * @return ResponseEntity
+	 */
+	@PutMapping("/update/{id}/{status}")
+	@ApiOperation(notes = "Altualizar status de pagamento de uma order", value = "Order", response = ResponseEntity.class)
+	@Secured("ROLE_USER")
+	public ResponseEntity<OrderDTO> updateStatusPagamento(@PathVariable Long id, @PathVariable OrderStatusEnum status) {
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
 	public OrderDTO toDTO(Order order) {

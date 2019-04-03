@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.invillia.acme.store.domain.Store;
-import com.invillia.acme.store.dto.FilterStoreDTO;
+import com.invillia.acme.store.exception.BadRequestException;
 import com.invillia.acme.store.repository.StoreRepository;
 import com.invillia.acme.store.repository.specifications.StoreSpecification;
 
@@ -27,12 +27,12 @@ public class StoreService {
 	 * Metodo de buscar uma Store
 	 * 
 	 * @param filter
-	 * @return
+	 * @return List<Store>
 	 */
-	public List<Store> findStore(FilterStoreDTO filter) {
+	public List<Store> findStore(String nome , String endereco) {
 		 Specification<Store> spec = Specification
-	                .where(StoreSpecification.nomeContains(filter.getNome()))
-	                .and(StoreSpecification.enderecoContains(filter.getEndereco()));
+	                .where(StoreSpecification.nomeContains(nome))
+	                .and(StoreSpecification.enderecoContains(endereco));
 		return repository.findAll(spec);
 	}
 
@@ -40,7 +40,7 @@ public class StoreService {
 	 * Metodo de salvar uma Store
 	 * 
 	 * @param store
-	 * @return
+	 * @return Store
 	 */
 	public Store save(Store store) {
 		repository.save(store);
@@ -52,9 +52,13 @@ public class StoreService {
 	 * 
 	 * @param store
 	 * @param id
-	 * @return
+	 * @return Store
 	 */
-	public Store update(Store store) {
+	public Store update(Store store,Long id) {
+		if(!repository.findById(id).isPresent()) {
+			throw new BadRequestException("Id informado não encontrado");
+		}
+		store.setId(id);
 		repository.save(store);
 		return store;
 	}

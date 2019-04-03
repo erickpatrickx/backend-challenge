@@ -19,15 +19,21 @@ management:
       
 zuul:
   routes:  
-    store:
-      url: http://localhost:8888/
-      serviceId: store
     auth:
-      url: http://localhost:8889/
+      url: http://localhost:8888/
       serviceId: auth
+    store:
+      url: http://localhost:8889/
+      sensitiveHeaders:
+      serviceId: store 
     order:
       url: http://localhost:8890/
+      sensitiveHeaders:
       serviceId: order 
+    payment:
+      url: http://localhost:8891/
+      sensitiveHeaders:
+      serviceId: payment 
    
       
       

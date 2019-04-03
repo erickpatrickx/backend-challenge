@@ -1,4 +1,4 @@
-package com.invillia.acme.order;
+package com.invillia.acme.store;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

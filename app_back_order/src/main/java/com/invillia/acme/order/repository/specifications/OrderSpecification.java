@@ -14,6 +14,12 @@ public class OrderSpecification {
 	private OrderSpecification() {
 	}
 
+	
+	public static Specification<Order> idEquals(Long id) {
+		return (root, cq, cb) -> id == null ? cb.isTrue(cb.literal(true))
+				: cb.equal(root.get("id"), id);
+	}
+	
 	public static Specification<Order> enderecoContains(String endereco) {
 		return (root, cq, cb) -> endereco == null ? cb.isTrue(cb.literal(true))
 				: cb.like(cb.lower(root.get("endereco")), endereco.toLowerCase() + "%");
