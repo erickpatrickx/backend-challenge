@@ -2,6 +2,6 @@ package com.invillia.acme.payment.enums;
 
 public enum PaymentStatusEnum {
 
-    PROCESSADO, REEMBOLSO
+    PROCESSADO, REEMBOLSO, FINALIZADO
 
 }
