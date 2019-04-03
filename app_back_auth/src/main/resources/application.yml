@@ -1,0 +1,21 @@
+server:
+  port: 8888
+ 
+spring:
+    datasource:
+     driver-class-name: org.postgresql.Driver
+     url: jdbc:postgresql://localhost:5433/invillia
+     username: postgres
+     password: postgres
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      show-sql: true
+      hibernate:
+        ddl-auto: none
+      properties:
+        format-sql: true
+        hibernate:
+          jdbc:
+           lob:
+            non_contextual_creation: true
+        
