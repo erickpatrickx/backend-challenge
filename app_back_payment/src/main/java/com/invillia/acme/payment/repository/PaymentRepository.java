@@ -7,9 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import com.invillia.acme.payment.domain.Payment;
-import com.invillia.acme.payment.dto.OrderItemDTO;
-
-import lombok.NonNull;
 
 
 /**
@@ -20,6 +17,6 @@ import lombok.NonNull;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long>, JpaSpecificationExecutor {
 
-	Collection<OrderItemDTO> findAllByIdOrder(Long idOrder);
+	Collection<Payment> findAllByIdOrder(Long idOrder);
 	
 }

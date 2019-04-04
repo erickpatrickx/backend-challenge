@@ -1,5 +1,11 @@
 version: '3'
 services:
+ docker-postgres:
+    image: postgres:10.4
+    environment:
+      - POSTGRES_DB=invillia
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
  gateway:
     image: gateway-docker
     ports:
@@ -26,12 +32,7 @@ services:
       - "8891:8891"
     depends_on:
       - docker-postgres
- docker-postgres:
-    image: postgres:10.4
-    environment:
-      - POSTGRES_DB=invillia
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+
 version: 0.0.1;
 
 

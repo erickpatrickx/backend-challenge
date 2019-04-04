@@ -103,6 +103,7 @@ public class OrderController {
 	@ApiOperation(notes = "Altualizar status de pagamento de uma order", value = "Order", response = ResponseEntity.class)
 	@Secured("ROLE_USER")
 	public ResponseEntity<OrderDTO> updateStatusPagamento(@PathVariable Long id, @PathVariable OrderStatusEnum status) {
+		orderService.updateStatus(id, status);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
