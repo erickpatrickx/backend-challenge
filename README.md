@@ -1,7 +1,9 @@
+# INSTRUÇÕES
+
 Conforme informado nos requisitos do projeto o mesmo deixa de ser monolitico, sendo assim optei por separar os projetos conforme boas praticas de desenvolvimento de microserviços. Tentei utilizar as melhores praticas de desenvolvimento para construir da melhor forma possivel o meu desafio . Agradeço a oportunidade e espero imensamente poder trabalhar na Invillia.
 
 
-#Atividades Realizadas# 
+## **Atividades Realizadas**
 
 Create a Store 
 Update a Store information
