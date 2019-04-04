@@ -31,6 +31,18 @@ app_back_payment
 3.  Acessar a pasta de cada projeto e criar a imagem de cada um utilizando o comando docker build, Ex:    docker build -t app gateway-docker
 4.  Acessar a pasta raiz do projeto e rodar  o comando docker-compose up.
 
+# Testando o projeto no Swagger
+
+Apos tudo configurado você podera acessar o swagger de cada projeto
+
+
+Auth -> http:localhost:8080/auth/swagger-ui.html
+Store -> http:localhost:8080/store/swagger-ui.html
+Order -> http:localhost:8080/order/swagger-ui.html
+Payment -> http:localhost:8080/payment/swagger-ui.html
+
+
+
 # Considerações
 
 - Os testes de unitarios e integração deverão ser revisados no projeto.
